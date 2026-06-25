@@ -17,7 +17,7 @@ bd.authenticate()
   .then(() => console.log('DB authenticate'))
   .catch((err) => console.error(err));
 
-bd.sync()
+bd.sync({ force: true })
   .then(() => {
     console.log('DB connected');
     // eslint-disable-next-line no-use-before-define

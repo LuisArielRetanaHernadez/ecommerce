@@ -4,12 +4,11 @@
 const { Product } = require('../models/product.model');
 const { Cart } = require('../models/cart.model');
 const { ProductInCart } = require('../models/productInCart.model');
-// const { Order } = require('../models/order.model');
+const { Order } = require('../models/order.model');
 
 // utils
 const { AppError } = require('../utils/AppError');
 const { catchAsync } = require('../utils/catchAsync');
-const { Order } = require('../models/order.model');
 
 exports.addProductCart = catchAsync(async (req, res, next) => {
   const { currentUser } = req;
@@ -53,7 +52,6 @@ exports.addProductCart = catchAsync(async (req, res, next) => {
         cartId: cart.id,
       },
     });
-    console.log(productExistsCart);
     if (productExistsCart && productExists.status === 'enabled') {
       return next(new AppError('this product is already in the cart', 404));
     }
